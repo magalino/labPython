@@ -5,13 +5,11 @@ from resources.usuario import Usuario, UsuarioRegister, UsuarioLogin, UsuarioLog
 from flask_jwt_extended import JWTManager
 from blacklist import BLACKLIST
 from sql_alchemy import banco
-import psycopg2
 
 app = Flask(__name__)
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco.db' 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://sidney:123456@localhost:5432/postgres' 
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 app.config['JWT_SECRET_KEY'] = 'DontTellAnyone'
 app.config['JWT_BLACKLIST_ENABLED'] = True
@@ -44,8 +42,3 @@ if __name__ == '__main__':
     from sql_alchemy import banco
     banco.init_app(app)
     app.run(debug=True)
-
-
-    #git clone https://github.com/magalino/labPython.git
-    #magalio / sidney.menezes@gmail.com
-    #ordemsobreocaos123
