@@ -1,11 +1,15 @@
 from flask import Flask, jsonify
 from flask_restful import Api
-from resources.hotel import Hoteis, Hotel
 from resources.usuario import Usuario, UsuarioRegister, UsuarioLogin, UsuarioLogout
 from flask_jwt_extended import JWTManager
 from blacklist import BLACKLIST
 from sql_alchemy import banco
 
+#classes de negocio
+from resources.hotel import Hoteis, Hotel
+from resources.clinica import Clinicas, Clinica
+
+#Begin
 app = Flask(__name__)
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco.db' 
@@ -33,6 +37,10 @@ def token_de_acesso_invalidado(jwt_header, jwt_payload):
 #Classes em uso    
 api.add_resource (Hoteis,'/hoteis')
 api.add_resource (Hotel, '/hoteis/<string:hotel_id>')
+
+api.add_resource (Clinicas,'/clinicas')
+api.add_resource (Clinica, '/clinicas/<string:clinica_id>')
+
 api.add_resource (Usuario, '/usuarios/<int:usuario_id>')
 api.add_resource (UsuarioRegister, '/cadastro')
 api.add_resource (UsuarioLogin, '/login')
